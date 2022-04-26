@@ -45,7 +45,7 @@ def frame_capture(file):
            
             frame_blob = cv2.dnn.blobFromImage(frame, 0.00392, (608,608),(0, 0, 0),swapRB=True, crop=False)
         
-            labels = ["cizik","gocuk", "ezilme","bukulme","boyahatasi","surtme"]
+            labels = ["person","car"]
         
                
             colors = ["0,0,255","0,0,255","255,0,0","255,255,0","0,255,0"]
@@ -54,7 +54,7 @@ def frame_capture(file):
             colors = np.tile(colors,(18,1))
         
         
-            model = cv2.dnn.readNetFromDarknet("model//yolo-obj.cfg","model//yolo-obj_last.weights")
+            model = cv2.dnn.readNetFromDarknet("obj.cfg","obj.weights")
         
             layers = model.getLayerNames()
             output_layer = [layers[layer[0]-1] for layer in model.getUnconnectedOutLayers()]
